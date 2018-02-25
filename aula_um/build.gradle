@@ -1,0 +1,25 @@
+subprojects {
+    apply plugin: 'java'
+}
+
+project(':server') {
+    sourceSets {
+        main {
+            java {
+                srcDir 'src'
+                include 'server/**'
+            }
+        }
+    }
+}
+
+project(':client') {
+    sourceSets {
+        main {
+            java {
+                srcDir 'src'
+                include 'client/**'
+            }
+        }
+    }
+}
