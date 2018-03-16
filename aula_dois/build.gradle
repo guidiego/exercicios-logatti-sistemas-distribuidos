@@ -1,0 +1,56 @@
+subprojects {
+    apply plugin: 'java'
+}
+
+project(':chat') {
+    sourceSets {
+        main {
+            java {
+                srcDir './src'
+                include 'chat/**'
+            }
+        }
+    }
+}
+
+project(':server') {
+    sourceSets {
+        main {
+            java {
+                srcDir './src'
+                include 'server/**'
+            }
+        }
+    }
+    dependencies {
+        compile project(':chat')
+    }
+    jar {
+        manifest {
+            attributes(
+                'Main-Class': 'server.ChatServer'
+            )
+        }
+    }
+}
+
+project(':client') {
+    sourceSets {
+        main {
+            java {
+                srcDir './src'
+                include 'client/**'
+            }
+        }
+    }
+    dependencies {
+        compile project(':chat')
+    }
+    jar {
+        manifest {
+            attributes(
+            'Main-Class': 'client.ChatClient'
+            )
+        }
+    }
+}
