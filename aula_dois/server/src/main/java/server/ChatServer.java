@@ -1,23 +1,26 @@
 package server;
 
-import java.rmi.Remote;
 import java.rmi.Naming;
+import java.rmi.Remote;
 import java.rmi.registry.LocateRegistry;
 
-import chat.*;
+import chat.Chat;
+import chat.ChatImpl;
+import chat.ChatRmiConstants;
 
 class ChatServer implements Remote {
-    public ChatServer() {
+
+    public ChatServer () {
         try {
             Chat c = new ChatImpl();
-            LocateRegistry.createRegistry(CalcRmiConstants.REDUCED.getPort());
+            LocateRegistry.createRegistry(ChatRmiConstants.REDUCED.getPort());
             Naming.rebind(ChatRmiConstants.REDUCED.getUri(), c);
         } catch (Exception e) {
             System.out.println("Trouble: " + e);
         }
     }
 
-    public static void main(String[] args) {
+    public static void main (String[] args) {
         new ChatServer();
     }
 }

@@ -14,43 +14,44 @@ project(':chat') {
 }
 
 project(':server') {
-    sourceSets {
+    /*sourceSets {
         main {
             java {
                 srcDir './src'
                 include 'server/**'
             }
         }
-    }
+    }*/
     dependencies {
         compile project(':chat')
     }
     jar {
         manifest {
             attributes(
-                'Main-Class': 'server.ChatServer'
+                    'Main-Class': 'server.ChatServer'
             )
         }
     }
 }
 
 project(':client') {
-    sourceSets {
+    /*sourceSets {
         main {
             java {
                 srcDir './src'
                 include 'client/**'
             }
         }
-    }
+    }*/
     dependencies {
         compile project(':chat')
     }
     jar {
         manifest {
             attributes(
-            'Main-Class': 'client.ChatClient'
+                    'Main-Class': 'client.ChatClient'
             )
         }
     }
+
 }

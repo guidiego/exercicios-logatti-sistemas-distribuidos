@@ -1,20 +1,22 @@
 package client;
 
 import java.rmi.Naming;
-import chat.*;
+
+import chat.Chat;
+import chat.ChatRmiConstants;
 
 public class ChatClient {
-    public static void main(String[] args) {
+
+    public static void main (String[] args) {
         try {
-            Chat c = (Chat) Naming
-                .lookup(ChatRmiConstants.REDUCED.getUri());
+            Chat c = (Chat) Naming.lookup(ChatRmiConstants.REDUCED.getUri());
             System.out.println("Enter Your name and press Enter:");
-            String user = s.nextLine().trim();
+            String user = "teste"; //s.nextLine().trim();
 
             System.out.println("Bem Vindo: " + user);
             Boolean inChat = true;
             while (inChat) {
-                String msg = s.nextLine().trim();
+                String msg = "teste"; //s.nextLine().trim();
                 if (msg == "exist") {
                     inChat = false;
                 } else {

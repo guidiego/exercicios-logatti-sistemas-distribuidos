@@ -1,13 +1,9 @@
 package chat;
 
-import java.rmi.server.UnicastRemoteObject;
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 
-import calculator.Chat;
-
-public class ChatImpl
-extends UnicastRemoteObject
-implements Calculator {
+public class ChatImpl extends UnicastRemoteObject implements Chat  {
     private static final long serialVersionUID = 1L;
 
     public ChatImpl() throws RemoteException {
