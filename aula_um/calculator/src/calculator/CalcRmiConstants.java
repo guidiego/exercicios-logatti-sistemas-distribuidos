@@ -2,8 +2,8 @@ package calculator;
 
 public enum CalcRmiConstants {
     REDUCED();
-    private String localUriTemplate = "//%s:%n/%s";
-    private Integer port = 1020;
+    private String localUriTemplate = "//%s:%s/%s";
+    private Integer port = 2020;
     private String uri = "localhost";
     private String serviceName = "CalculatorService";
 
