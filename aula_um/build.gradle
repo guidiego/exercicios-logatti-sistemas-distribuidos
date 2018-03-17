@@ -2,14 +2,26 @@ subprojects {
     apply plugin: 'java'
 }
 
+project(':calculator') {
+    sourceSets {
+        main {
+            java {
+                srcDir 'src'
+            }
+        }
+    }
+}
+
 project(':server') {
     sourceSets {
         main {
             java {
                 srcDir 'src'
-                include 'server/**'
             }
         }
+    }
+    dependencies {
+        compile project(':calculator')
     }
 }
 
@@ -18,8 +30,10 @@ project(':client') {
         main {
             java {
                 srcDir 'src'
-                include 'client/**'
             }
         }
+    }
+    dependencies {
+        compile project(':calculator')
     }
 }
