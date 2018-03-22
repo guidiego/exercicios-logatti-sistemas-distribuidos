@@ -6,8 +6,7 @@ project(':chat') {
     sourceSets {
         main {
             java {
-                srcDir './src'
-                include 'chat/**'
+                srcDir 'src'
             }
         }
     }
@@ -17,20 +16,12 @@ project(':server') {
     sourceSets {
         main {
             java {
-                srcDir './src'
-                include 'server/**'
+                srcDir 'src'
             }
         }
     }
     dependencies {
         compile project(':chat')
-    }
-    jar {
-        manifest {
-            attributes(
-                'Main-Class': 'server.ChatServer'
-            )
-        }
     }
 }
 
@@ -38,19 +29,11 @@ project(':client') {
     sourceSets {
         main {
             java {
-                srcDir './src'
-                include 'client/**'
+                srcDir 'src'
             }
         }
     }
     dependencies {
         compile project(':chat')
-    }
-    jar {
-        manifest {
-            attributes(
-            'Main-Class': 'client.ChatClient'
-            )
-        }
     }
 }

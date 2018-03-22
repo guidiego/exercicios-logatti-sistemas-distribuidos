@@ -10,7 +10,7 @@ class ChatServer implements Remote {
     public ChatServer() {
         try {
             Chat c = new ChatImpl();
-            LocateRegistry.createRegistry(CalcRmiConstants.REDUCED.getPort());
+            LocateRegistry.createRegistry(ChatRmiConstants.REDUCED.getPort());
             Naming.rebind(ChatRmiConstants.REDUCED.getUri(), c);
         } catch (Exception e) {
             System.out.println("Trouble: " + e);
