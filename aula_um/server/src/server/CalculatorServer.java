@@ -6,7 +6,7 @@ import java.rmi.registry.LocateRegistry;
 
 import calculator.*;
 
-class CalculatorServer implements Remote {
+public class CalculatorServer implements Remote {
     public CalculatorServer() {
         try {
             Calculator c = new CalculatorImpl();
