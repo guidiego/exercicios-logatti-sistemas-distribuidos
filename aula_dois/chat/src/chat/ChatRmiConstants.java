@@ -2,8 +2,8 @@ package chat;
 
 public enum ChatRmiConstants {
     REDUCED();
-    private String localUriTemplate = "//%s:%n/%s";
-    private Integer port = 1020;
+    private String localUriTemplate = "//%s:%s/%s";
+    private Integer port = 1030;
     private String uri = "localhost";
     private String serviceName = "ChatService";
 

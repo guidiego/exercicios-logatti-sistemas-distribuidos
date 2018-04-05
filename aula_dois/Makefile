@@ -1,28 +1,14 @@
 start_server:
-	rmic -classpath bin/main server.ChatServer -nowarn
-	start rmiregistry
-	start java -jar server/build/libs/server.jar
-
-drop_server:
-	stop rmiregistry
-	stop java -jar server/build/libs/server.jar
+	java -cp server/build/libs/server.jar:chat/build/libs/chat.jar server.ChatServer
 
 start_client:
-	start java -jar client/build/libs/client.jar
-
-drop_client:
-	stop java -jar client/build/libs/client.jar
+	java -cp client/build/libs/client.jar:chat/build/libs/chat.jar client.ChatClient
 
 build:
-	gradle server:build
-	gradle client:build
+	gradle server:build --debug
+	gradle client:build --debug
 
 run:
 	make build
 	make start_server
-	make start_client
 
-	java -jar client/build/libs/client.jar
-
-	make drop_server
-	make drop_client
