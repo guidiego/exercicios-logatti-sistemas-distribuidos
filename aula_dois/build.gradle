@@ -10,6 +10,12 @@ project(':chat') {
             }
         }
     }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        compile 'mysql:mysql-connector-java:5.1.37'
+    }
 }
 
 project(':server') {

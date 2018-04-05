@@ -1,0 +1,19 @@
+mysql:
+  image: mysql
+  ports:
+    - "3306:3306"
+  environment:
+    - MYSQL_USER=root
+    - MYSQL_PASSWORD=root
+    - MYSQL_DATABASE=chat
+server:
+  build: .
+  ports:
+    - 1030:1030
+  links:
+    - mysql
+  environment:
+    - MYSQL_URI=localhost
+    - MYSQL_USER=root
+    - MYSQL_PASSWORD=root
+    - MYSQL_DATABASE=chat

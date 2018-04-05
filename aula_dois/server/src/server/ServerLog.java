@@ -30,6 +30,7 @@ class ServerLog {
         try {
 			this.bw.write(
             this.df.format(new Date()) + "'" + m + "'\n");
+            this.bw.flush();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -42,7 +43,6 @@ class ServerLog {
             this.bw.close();
 			this.fw.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     }
