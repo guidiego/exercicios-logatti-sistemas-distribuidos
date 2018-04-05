@@ -1,24 +1,24 @@
-package client;
+package chat;
 
 import java.lang.Thread;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import javax.swing.JTextArea;
 
 import chat.Chat;
+import chat.MTCallbackInterface;
 
-class MessageThread extends Thread {
+public class MessageThread extends Thread {
     private Chat chat;
     private int messageIndex;
-    private JTextArea chatBox;
+    private MTCallbackInterface callback;
 
-    public MessageThread(Chat c, JTextArea chatBox) {
+    public MessageThread(Chat c, MTCallbackInterface callback) {
         this.chat = c;
         this.messageIndex = 0;
-        this.chatBox = chatBox;
+        this.callback = callback;
     }
 
-	public void run() {
+    public void run() {
         try {
             while(true) {
                 ArrayList<String> msgs =
@@ -27,12 +27,11 @@ class MessageThread extends Thread {
                 this.messageIndex += msgs.size();
 
                 for (String m : msgs) {
-                    System.out.println(m);
-                    this.chatBox.append(m);
+                    this.callback.run(m);
                 }
             }
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 }

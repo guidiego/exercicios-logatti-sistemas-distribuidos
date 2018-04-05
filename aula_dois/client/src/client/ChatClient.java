@@ -5,7 +5,8 @@ import java.rmi.RemoteException;
 
 import chat.Chat;
 import chat.ChatRmiConstants;
-import client.MessageThread;
+import chat.MessageThread;
+import chat.MTCallbackInterface;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -70,7 +71,6 @@ public class ChatClient {
         GridBagConstraints preLeft = new GridBagConstraints();
         preLeft.anchor = GridBagConstraints.WEST;
         preLeft.insets = new Insets(0, 10, 0, 10);
-        // preRight.weightx = 2.0;
         preRight.fill = GridBagConstraints.HORIZONTAL;
         preRight.gridwidth = GridBagConstraints.REMAINDER;
 
@@ -87,13 +87,11 @@ public class ChatClient {
 
         try {
             chat = (Chat) Naming.lookup(ChatRmiConstants.REDUCED.getUri());
-            MessageThread mt = new MessageThread(chat, chatBox);
-
             JPanel mainPanel = new JPanel();
             mainPanel.setLayout(new BorderLayout());
 
             JPanel southPanel = new JPanel();
-            southPanel.setBackground(Color.BLUE);
+            southPanel.setBackground(Color.GRAY);
             southPanel.setLayout(new GridBagLayout());
 
             messageBox = new JTextField(30);
@@ -132,6 +130,12 @@ public class ChatClient {
             newFrame.setSize(470, 300);
             newFrame.setVisible(true);
 
+            MessageThread mt = new MessageThread(chat, new MTCallbackInterface(){
+                @Override
+                public void run(String m) {
+                    chatBox.append(m + "\n");
+                }
+            });
             mt.start();
         } catch (Exception e) {
             System.out.println("Trouble: " + e);
@@ -147,7 +151,6 @@ public class ChatClient {
                 messageBox.setText("");
             } else {
                 try {
-                    System.out.println(username + " " + messageBox.getText());
                     chat.send(username, messageBox.getText());
                     messageBox.setText("");
 				} catch (RemoteException e) {
