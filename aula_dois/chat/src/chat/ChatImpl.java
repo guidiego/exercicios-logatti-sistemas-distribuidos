@@ -7,24 +7,26 @@ import java.util.Date;
 import java.rmi.RemoteException;
 
 import chat.Chat;
-
+import chat.ChatRepository;
 public class ChatImpl
 extends UnicastRemoteObject
 implements Chat {
     private static final long serialVersionUID = 1L;
     private ArrayList<String> messages = new ArrayList<String>();
     private SimpleDateFormat df = new SimpleDateFormat("dd/MM/YYYY hh:mm");
-    // private ChatRepository repo = new ChatRepository();
+    private SimpleDateFormat dfDb = new SimpleDateFormat("MM-dd-YYYY hh:mm");
+    private ChatRepository repo = new ChatRepository();
 
     public ChatImpl() throws RemoteException {
         super();
     }
 
     public void send(String u, String m) {
-        String date = this.df.format(new Date());
+        Date d = new Date();
+        String date = this.df.format(d);
         String msg = "[" + u + "] " + date + " : " + m;
 
-        // repo.saveMessage(u, m, date);
+        repo.saveMessage(u, m, this.dfDb.format(d));
         this.messages.add(msg);
     }
 

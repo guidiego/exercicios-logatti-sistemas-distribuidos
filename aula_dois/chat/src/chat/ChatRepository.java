@@ -7,8 +7,9 @@ import java.sql.Statement;
 
 class ChatRepository {
     private Connection conn;
-    private final String connTemplate = "jdbc:mysql://%s/%s?user=%s&password=%s";
+    private final String connTemplate = "jdbc:mysql://%s:%s/%s?user=%s&password=%s";
     private final String connUri = System.getenv("MYSQL_URI");
+    private final String connPort = System.getenv("MYSQL_PORT");
     private final String connDB = System.getenv("MYSQL_DATABASE");
     private final String connPass = System.getenv("MYSQL_PASSWORD");
     private final String connUser = System.getenv("MYSQL_USER");
@@ -63,6 +64,7 @@ class ChatRepository {
         return String.format(
             this.connTemplate,
             this.connUri,
+            this.connPort,
             this.connDB,
             this.connUser,
             this.connPass

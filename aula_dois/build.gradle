@@ -1,5 +1,8 @@
 subprojects {
     apply plugin: 'java'
+    repositories {
+        mavenCentral()
+    }
 }
 
 project(':chat') {
@@ -9,9 +12,6 @@ project(':chat') {
                 srcDir 'src'
             }
         }
-    }
-    repositories {
-        mavenCentral()
     }
     dependencies {
         compile 'mysql:mysql-connector-java:5.1.37'

@@ -3,9 +3,8 @@ mysql:
   ports:
     - "3306:3306"
   environment:
-    - MYSQL_USER=root
-    - MYSQL_PASSWORD=root
     - MYSQL_DATABASE=chat
+    - MYSQL_ROOT_PASSWORD=root
 server:
   build: .
   ports:
@@ -14,6 +13,7 @@ server:
     - mysql
   environment:
     - MYSQL_URI=localhost
+    - MYSQL_PORT=3306
     - MYSQL_USER=root
     - MYSQL_PASSWORD=root
     - MYSQL_DATABASE=chat
