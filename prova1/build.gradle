@@ -1,0 +1,42 @@
+subprojects {
+    apply plugin: 'java'
+    repositories {
+        mavenCentral()
+    }
+}
+
+project(':crud') {
+    sourceSets {
+        main {
+            java {
+                srcDir 'src'
+            }
+        }
+    }
+}
+
+project(':server') {
+    sourceSets {
+        main {
+            java {
+                srcDir 'src'
+            }
+        }
+    }
+    dependencies {
+        compile project(':crud')
+    }
+}
+
+project(':client') {
+    sourceSets {
+        main {
+            java {
+                srcDir 'src'
+            }
+        }
+    }
+    dependencies {
+        compile project(':crud')
+    }
+}
