@@ -1,6 +1,6 @@
 FROM gradle:4.6.0-jdk8
 
-COPY . /chat
+ADD --chown=gradle . /chat
 WORKDIR /chat
 
 RUN cd /chat \
